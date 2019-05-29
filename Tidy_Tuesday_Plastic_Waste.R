@@ -68,10 +68,9 @@ mismanaged_vs_gdp_life_exp <-
   ) %>%
   mutate(
     life_expectancy = case_when(
-      life_exp < 68.90 ~ "Low Life Expectancy",
-      life_exp > 68.90 &
-        life_exp < 80.50 ~ "Medium Life Expectancy",
-      life_exp > 80.5 ~ "High Life Expectancy"
+      life_exp <= 68.90 ~ "Low Life Expectancy",
+      life_exp >= 68.90 & life_exp <= 80.50 ~ "Medium Life Expectancy",
+      life_exp >= 80.5 ~ "High Life Expectancy"
     )
   ) %>%
   mutate(percentage_mismanaged = (mismanaged_per_capita / waste_per_capita) *
